@@ -31,7 +31,7 @@ export const AppContext = createContext<IAppContext>(AppModel);
 export const AppState = () => useContext<IAppContext>(AppContext);
 
 
-export const AppProvider = (props: IProps) => {
+export const AppProvider: React.FC = ({ children }) => {
 
     const [placesCarousel, placesCarouselDispatch] = useReducer(
         placesReducer,
@@ -65,7 +65,7 @@ export const AppProvider = (props: IProps) => {
                 placesFeatured: [placesFeature, placesFeatureDispatchAsync],
             }}
         >
-            {props.children}
+            {children}
         </AppContext.Provider>
     );
 };
@@ -78,7 +78,7 @@ export const AppProvider = (props: IProps) => {
 
 export const usePlaceCarousel = () => {
     const contextValue = useContext(AppContext);
-    return contextValue.placesCarousel as unknown as [
+    return contextValue.placesCarousel as [
         IPlaces,
         AsyncDispatch<IPlacesAction, IAppContext>
     ];
@@ -86,7 +86,7 @@ export const usePlaceCarousel = () => {
 
 export const usePlaceFeature = () => {
     const contextValue = useContext(AppContext);
-    return contextValue.placesFeatured as unknown as [
+    return contextValue.placesFeatured as [
         IPlaces,
         AsyncDispatch<IPlacesAction, IAppContext>
     ];

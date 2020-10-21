@@ -2,10 +2,21 @@ import React from "react";
 
 import "./place-style.scss";
 
-const Place = () => (
+interface IProps {
+  title: string;
+  img: string;
+  location: string;
+}
+
+const Place = (props: IProps) => (
   <div className="place-container">
-    <h1 className="title">Place Item</h1>
-  </div>
+
+    <img src={props.img} alt="image of location" width="100" height="100" />
+
+
+    <h1 className="title">{props.title}</h1>
+    <p>{props.location}</p>
+  </div >
 );
 
 export default Place;

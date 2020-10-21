@@ -1,10 +1,16 @@
 import React from "react";
 import Carousel from "react-multi-carousel";
+import Place from '../place/place.component';
 import "../../../node_modules/react-multi-carousel/lib/styles.css";
 
 import "./places-carousel-style.scss";
+import { IPlace } from "../../types";
 
-const PlacesCarousel = () => {
+interface IProps {
+  places: IPlace[] | null;
+}
+
+const PlacesCarousel = (props: IProps) => {
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -24,17 +30,20 @@ const PlacesCarousel = () => {
       items: 1,
     },
   };
+  console.log("places is ", props.places);
 
   return (
     <div className="places-carousel-container">
       <h1 className="title">Places carousel</h1>
       <Carousel responsive={responsive}>
-        <div>Item 1</div>
-        <div>Item 2</div>
-        <div>Item 3</div>
-        <div>Item 4</div>
+        {props.places && props.places.map((place, i) => {
+          return (
+            <Place key={i} title={place.title} img={place.img} location={place.location} />
+
+          )
+        })}
       </Carousel>
-    </div>
+    </div >
   );
 };
 

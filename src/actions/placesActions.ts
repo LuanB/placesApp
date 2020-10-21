@@ -20,7 +20,7 @@ export type IPlacesAction = ISetPlacesCarouselAction | ISetPlacesFeatureAction;
 /* Actions */
 
 export const setPlacesCarouselAction = (
-  places: IPlace[]
+  places: any
 ): ISetPlacesCarouselAction => ({
   type: "SET_PLACES_CAROUSEL",
   places,
@@ -33,9 +33,10 @@ export const setPlacesFeatureAction = (
   places,
 });
 
-export const setPlacesCarousel = (places: IPlace[]) => {
-  return (dispatch: IPlaceDispatch) => {
+export const setPlacesCarousel = (places: any) => {
+  return async (dispatch: IPlaceDispatch) => {
     dispatch(setPlacesCarouselAction(places));
+    return true;
   };
 };
 
