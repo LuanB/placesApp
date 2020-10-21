@@ -1,11 +1,15 @@
 import React, { createContext, useContext, useReducer } from 'react';
 import createAsyncDispatch, { AsyncDispatch } from './createAsyncDispatch';
 import { IPlacesAction } from '../actions';
+import { placesReducer } from '../reducers';
 
 import { IPlaces } from '../types';
 
-export const initialStatePlaces = {
+export const initialStatePlacesCarousel = {
     placesCarousel: [],
+}
+
+export const initialStatePlacesFeature = {
     placesFeature: []
 }
 
@@ -29,67 +33,40 @@ export const AppState = () => useContext<IAppContext>(AppContext);
 
 export const AppProvider: React.FC<{}> = (props: IProps) => {
 
-    const [place, placeDispatch] = useReducer(
-        userReducer,
-        initialStateUser
+    const [placesCarousel, placesCarouselDispatch] = useReducer(
+        placesReducer,
+        initialStatePlacesCarousel
+    );
+
+    const [placesFeature, placesFeatureDispatch] = useReducer(
+        placesReducer,
+        initialStatePlacesCarousel
     );
 
 
 
     const state: IAppContext = {
-        user: [user],
-        kits: [kits],
-        tray: [tray],
-        orders: [orders],
-        parts: [parts],
+        placesCarousel: [placesCarousel],
+        placesFeatured: [placesFeature]
     };
 
-    const userDispatchAsync: AsyncDispatch<
-        IUserAction,
+    const placesCarouselDispatchAsync: AsyncDispatch<
+        IPlacesAction,
         IAppContext
-    > = createAsyncDispatch(userDispatch, state);
+    > = createAsyncDispatch(placesCarouselDispatch, state);
 
-    const kitsDispatchAsync: AsyncDispatch<
-        IKitsAction,
+    const placesFeatureDispatchAsync: AsyncDispatch<
+        IPlacesAction,
         IAppContext
-    > = createAsyncDispatch(kitsDispatch, state);
-
-    const trayDispatchAsync: AsyncDispatch<
-        ITrayAction,
-        IAppContext
-    > = createAsyncDispatch(trayDispatch, state);
-
-    const ordersDispatchAsync: AsyncDispatch<
-        IOrdersAction,
-        IAppContext
-    > = createAsyncDispatch(ordersDispatch, state);
-
-    const partsDispatchAsync: AsyncDispatch<
-        IPartsAction,
-        IAppContext
-    > = createAsyncDispatch(partsDispatch, state);
+    > = createAsyncDispatch(placesFeatureDispatch, state);
 
 
-    /* Create Cached State for User and Orders */
-    const createPersistUser = () => ({
-        user: null,
-        accessToken: null
-    });
-
-    const [persistUser, setUserCache] = usePersistStorage(`${PERSIST_KEY}_USER`, createPersistUser);
 
     return (
         <AppContext.Provider
             value={{
-                updateUserCache: setUserCache,
-                cache: {
-                    user: { ...persistUser, sessionCheckVisible: false },
-                },
-                user: [user, userDispatchAsync],
-                kits: [kits, kitsDispatchAsync],
-                tray: [tray, trayDispatchAsync],
-                orders: [orders, ordersDispatchAsync],
-                parts: [parts, partsDispatchAsync],
+                placesCarousel: [placesCarousel, placesCarouselDispatchAsync],
+                placesFeatured: [placesFeature, placesFeatureDispatchAsync],
             }}
         >
             {props.children}
