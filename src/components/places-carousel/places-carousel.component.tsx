@@ -1,10 +1,10 @@
 import React from "react";
 import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
+import "../../../node_modules/react-multi-carousel/lib/styles.css";
 
 import "./places-carousel-style.scss";
 
-const PlacesCarousel = (places) => {
+const PlacesCarousel = () => {
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.

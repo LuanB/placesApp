@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
-import PlacesCarousel from "./components/places-carousel/places-carousel.component";
+import PlacesContainer from './components/places-container/places-container.component';
 import { AppProvider } from "./context";
 
 function App() {
   return (
     <AppProvider>
       <div className="App">
-        <PlacesCarousel />
+        <PlacesContainer />
       </div>
     </AppProvider>
   );
