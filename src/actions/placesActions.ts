@@ -17,16 +17,38 @@ export interface ISetPlacesFeatureAction extends IActions {
 
 export type IPlacesAction = ISetPlacesCarouselAction | ISetPlacesFeatureAction;
 
+/* Actions */
+
+export const setPlacesCarouselAction = (
+  places: IPlace[] | null
+): ISetPlacesCarouselAction => ({
+  type: "SET_PLACES_CAROUSEL",
+  places,
+});
+
+export const setPlacesFeatureAction = (
+  places: IPlace[] | null
+): ISetPlacesFeatureAction => ({
+  type: "SET_PLACES_FEATURE",
+  places,
+});
+
+export const setPlacesCarousel = (places: IPlace[]) => {
+  return (dispatch: IPlaceDispatch) => {
+    dispatch(setPlacesCarouselAction(places));
+  };
+};
+
+export const setPlacesFeature = (places: IPlace[]) => {
+  return (dispatch: IPlaceDispatch) => {
+    dispatch(setPlacesFeatureAction(places));
+  };
+};
+
 export const getPlaces = (type: placesType) => {
   return async () => {
     const url = `${type}`;
     const getAPIPlaces = await APIGet(url);
     return getAPIPlaces;
-  };
-};
-
-export const setPlacesCarousel = (places: IPlace[]) => {
-  return (dispatch: IPlaceDispatch) => {
-    dispatch(setPartsInTrayAction(parts));
   };
 };
