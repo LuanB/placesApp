@@ -7,11 +7,11 @@ import { IPlaces } from '../types';
 
 export const initialStatePlacesCarousel = {
     placesCarousel: [],
-}
+};
 
 export const initialStatePlacesFeature = {
     placesFeature: []
-}
+};
 
 interface IAppContext {
     placesCarousel?: [IPlaces | null, AsyncDispatch<IPlacesAction, IAppContext>?];
@@ -31,7 +31,7 @@ export const AppContext = createContext<IAppContext>(AppModel);
 export const AppState = () => useContext<IAppContext>(AppContext);
 
 
-export const AppProvider: React.FC<{}> = (props: IProps) => {
+export const AppProvider = (props: IProps) => {
 
     const [placesCarousel, placesCarouselDispatch] = useReducer(
         placesReducer,
@@ -42,8 +42,6 @@ export const AppProvider: React.FC<{}> = (props: IProps) => {
         placesReducer,
         initialStatePlacesCarousel
     );
-
-
 
     const state: IAppContext = {
         placesCarousel: [placesCarousel],
@@ -59,8 +57,6 @@ export const AppProvider: React.FC<{}> = (props: IProps) => {
         IPlacesAction,
         IAppContext
     > = createAsyncDispatch(placesFeatureDispatch, state);
-
-
 
     return (
         <AppContext.Provider
