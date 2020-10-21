@@ -7,3 +7,5 @@ export interface IPlace {
 export interface IPlaces {
   places: IPlace[];
 }
+
+export type placesType = "carousel" | "featured";
