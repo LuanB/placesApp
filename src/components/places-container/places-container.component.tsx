@@ -20,6 +20,7 @@ const PlacesContainer = () => {
 
   useEffect(() => {
     getPlacesCarousel()
+    getPlacesFeatured()
   }, [])
 
   const getPlacesCarousel = async () => {
