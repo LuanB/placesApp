@@ -1,1 +1,1 @@
-export { IPlacesAction } from "./placesActions";
+export type { IPlacesAction } from "./placesActions";

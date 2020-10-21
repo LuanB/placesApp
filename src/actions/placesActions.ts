@@ -20,14 +20,14 @@ export type IPlacesAction = ISetPlacesCarouselAction | ISetPlacesFeatureAction;
 /* Actions */
 
 export const setPlacesCarouselAction = (
-  places: IPlace[] | null
+  places: IPlace[]
 ): ISetPlacesCarouselAction => ({
   type: "SET_PLACES_CAROUSEL",
   places,
 });
 
 export const setPlacesFeatureAction = (
-  places: IPlace[] | null
+  places: IPlace[]
 ): ISetPlacesFeatureAction => ({
   type: "SET_PLACES_FEATURE",
   places,
