@@ -11,7 +11,7 @@ interface IProps {
 const Place = (props: IProps) => (
   <div className="place-container">
 
-    <img src={props.img} alt="image of location" width="100" height="100" />
+    <img src={props.img} alt="image of location" width="250" height="100" />
 
 
     <h1 className="title">{props.title}</h1>
