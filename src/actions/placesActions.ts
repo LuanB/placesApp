@@ -1,10 +1,11 @@
 import React from "react";
 import { APIGet } from "../utils";
+import { placesType } from "../types";
 
-export const getPlaces = (type: string) => {
+export const getPlaces = (type: placesType) => {
   return async () => {
-    const url = `trays?kit_id=${kitID}&kit_instance_id=${kitInstanceID}&order_id=${orderID}&stage=${stage}`;
-    const getTraysInKit = await APIGet(url, accessToken);
-    return getTraysInKit;
+    const url = `${type}`;
+    const getAPIPlaces = await APIGet(url);
+    return getAPIPlaces;
   };
 };
