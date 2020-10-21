@@ -69,3 +69,25 @@ export const AppProvider = (props: IProps) => {
         </AppContext.Provider>
     );
 };
+
+
+/*
+ * Context Hooks
+ */
+
+
+export const usePlaceCarousel = () => {
+    const contextValue = useContext(AppContext);
+    return contextValue.placesCarousel as unknown as [
+        IPlaces,
+        AsyncDispatch<IPlacesAction, IAppContext>
+    ];
+};
+
+export const usePlaceFeature = () => {
+    const contextValue = useContext(AppContext);
+    return contextValue.placesFeatured as unknown as [
+        IPlaces,
+        AsyncDispatch<IPlacesAction, IAppContext>
+    ];
+};
