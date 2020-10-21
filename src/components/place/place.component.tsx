@@ -23,16 +23,16 @@ const useStyles = makeStyles({
 });
 
 const Place = (props: IProps) => (
-  <div className="place-container">
+  <div className="places-container">
 
     <Card className="card-place">
       <CardActionArea>
         <CardMedia
           component="img"
-          alt="Contemplative Reptile"
+          alt={props.title}
           height="140"
           image={props.img}
-          title="Contemplative Reptile"
+          title={props.title}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">

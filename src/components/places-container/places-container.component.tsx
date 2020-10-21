@@ -33,7 +33,7 @@ const PlacesContainer = () => {
     const placesCarousel = await APIGet('/carousel');
     console.log("response from API is ", placesCarousel);
     setPlacesCarouselState(placesCarousel.data);
-    setLoading(false);
+    if(placesCarousel.data.length > 0) {setLoading(false)};
     // save into context
     placesCarouselDispatch(setPlacesCarousel(placesCarousel));
 
